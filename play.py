@@ -13,8 +13,13 @@ public_key = private_key.public_key
 eth_address = public_key.to_checksum_address()
 message = b"Your secret message"
 
-print(f'public_key {private_key.public_key}')
+# Public key in uncompressed format (65 bytes)
+public_key_bytes = public_key.to_bytes()
+public_key_uncompressed = b'\x04' + public_key_bytes
+
 print(f'Ethereum address: {eth_address}')
+print(f'public_key {private_key.public_key}')
+print(f'Uncompressed Public Key: {public_key_uncompressed.hex()}')
 
 # Public key in uncompressed format (65 bytes)
 public_key_bytes = b'\x04' + public_key.to_bytes()
